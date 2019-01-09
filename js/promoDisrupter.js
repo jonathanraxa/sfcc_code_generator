@@ -1,0 +1,26 @@
+  // DISRUPTER JAVASCRIPT CODE
+  function resetModal_disrupter(){
+    document.getElementById("promoForm_disrupter").reset();
+    document.getElementById("promoTemplateHTML_disrupter").innerHTML = "";
+    document.getElementById("promoCodeTemplate_disrupter").value = "";
+    jQuery("#promoCopied_distrupter").css("visibility","hidden");
+
+  }
+  function promoGenerate_disrupter(){
+
+    var imagePath = document.getElementById("id1_disrupter");
+    var imagePathAlt = document.getElementById("id2_disrupter");
+    var promoPopup = document.getElementById("id3_disrupter");
+
+    document.getElementById("promoCodeTemplate_disrupter").innerText =
+    '<style type=\"text\/css\">\n    \/* OVERRIDES *\/\n    .top-promo-banner .top-promo-content.active-promo{padding:0;}\n    \/* CUSTOM CODE - Need to templatize. *\/\n    .promoDefaultDisrupter .top-promo-content.active-promo {background-color: transparent;padding:10px;}\n    .promoDefaultDisrupter .tnc_disrupter{position: absolute;left:0%;bottom:0%;height:10%;width:100%;\/* background: red; *\/}\n    <\/style>\n\n    <!'+'-- GLOBAL DISRUPTOR CODE --'+'>\n    <div class=\"promoDefaultDisrupter global-dialog\">\n      <div class=\"sds_relative\">\n        <picture>\n          <img alt=\"'+imagePathAlt.value+'\" src=\"'+imagePath.value+'?$staticlink$\" \/>\n        <\/picture>\n        <a class=\"tnc_disrupter global-dialog-trigger\"><span class=\"sds_visually-hidden\">Terms and Conditions<\/span><\/a>\n        <!'+'-- pop up code --'+'>\n        $include(Page-Include,\'cid\', \''+promoPopup.value+'\')$\n      <\/div>\n    <\/div>\n\n    <script type=\"text\/javascript\">\n    document.addEventListener(\"DOMContentLoaded\", function(event) {\n      var $promoBanner = $(\'.top-banner-wrapper .top-promo-trigger\');\n      if($promoBanner.length > -1 && $promoBanner.find(\"div[data-enableAutoDistrupt]\").length > -1){\n        \/\/pull this from localStorage or a cookie\n        var hasBeenAutoDisrupted = sessionStorage.getItem(\"gapAutoDisrupted\") == \"true\";\n        if(!hasBeenAutoDisrupted && onAutoDisrupPage()){\n          setTimeout(function() { $promoBanner.click() } , 1000); \/\/delay trigger for the script to fully load\n          setTimeout(function() { $promoBanner.click() } , 7000); \/\/configurable duration from content asset\n          \/\/set the localStorage or cookie\n          sessionStorage.setItem(\"gapAutoDisrupted\",\"true\");\n        }\n      }\n      function onAutoDisrupPage(){\n        var allowedNS = [\"search\",\"product\",\"storefront\",\"content\"];\n        if(allowedNS.indexOf(window.pageContext.ns) > -1){\n          return true;\n        }\n        return false;\n      }\n    });\n    <\/script>';
+
+    document.getElementById("promoTemplateHTML_disrupter").innerHTML =
+    '<style type=\"text\/css\">\n    \/* OVERRIDES *\/\n    .top-promo-banner .top-promo-content.active-promo{padding:0;}\n    \/* CUSTOM CODE - Need to templatize. *\/\n    .promoDefaultDisrupter .top-promo-content.active-promo {background-color: transparent;padding:10px;}\n    .promoDefaultDisrupter .tnc_disrupter{position: absolute;left:0%;bottom:0%;height:10%;width:100%;\/* background: red; *\/}\n    <\/style>\n\n    <!'+'-- GLOBAL DISRUPTOR CODE --'+'>\n    <div class=\"promoDefaultDisrupter global-dialog\" style=\"margin:0 auto; text-align:center;\">\n      <div class=\"sds_relative\">\n        <picture>\n          <img alt=\"'+imagePathAlt.value+'\" src=\"https://staging-sfcc.gap.co.uk/on/demandware.static/-/Library-Sites-GapSharedLibrary/default/dwf873993a/'+imagePath.value+'?$staticlink$\" \/>\n        <\/picture>\n        <a class=\"tnc_disrupter global-dialog-trigger\"><span class=\"sds_visually-hidden\">Terms and Conditions<\/span><\/a>\n        <!'+'-- pop up code --'+'>\n        <br /> <br />$include(Page-Include,\'cid\', \''+promoPopup.value+'\')$\n      <\/div>\n    <\/div>\n\n    <script type=\"text\/javascript\">\n    document.addEventListener(\"DOMContentLoaded\", function(event) {\n      var $promoBanner = $(\'.top-banner-wrapper .top-promo-trigger\');\n      if($promoBanner.length > -1 && $promoBanner.find(\"div[data-enableAutoDistrupt]\").length > -1){\n        \/\/pull this from localStorage or a cookie\n        var hasBeenAutoDisrupted = sessionStorage.getItem(\"gapAutoDisrupted\") == \"true\";\n        if(!hasBeenAutoDisrupted && onAutoDisrupPage()){\n          setTimeout(function() { $promoBanner.click() } , 1000); \/\/delay trigger for the script to fully load\n          setTimeout(function() { $promoBanner.click() } , 7000); \/\/configurable duration from content asset\n          \/\/set the localStorage or cookie\n          sessionStorage.setItem(\"gapAutoDisrupted\",\"true\");\n        }\n      }\n      function onAutoDisrupPage(){\n        var allowedNS = [\"search\",\"product\",\"storefront\",\"content\"];\n        if(allowedNS.indexOf(window.pageContext.ns) > -1){\n          return true;\n        }\n        return false;\n      }\n    });\n    <\/script>';
+
+    const disrupterHTML = document.getElementById('promoCodeTemplate_disrupter');
+    disrupterHTML.focus();
+    disrupterHTML.select();
+    document.execCommand("copy");
+    jQuery("#promoCopied_distrupter").css('visibility','visible');
+  }
